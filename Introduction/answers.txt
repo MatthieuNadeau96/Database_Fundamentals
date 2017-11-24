@@ -1,15 +1,47 @@
-1.)
+1.) A Clockwork Orange = string
+    42 = integer
+    09/02/1945 = integer
+    98.7 = float
+    15.99 = float
 
-2.)
+2.) A database might be used to store passwords, names, emails, usernames, ids, account numbers, prices, addresses, etc. A text file is used for humans to read.
 
-3.)
+3.) One difference between SQL and other programming languages is the fact that SQL is a declarative language, rather than a procedural language - like most programming languages.
 
-4.)
+4.) A database has tables to hold relevant data. In the tables the data is organized by meaningful rows and columns, each able to hold different data types. All information is accessible using a program like SQL.
 
-5.)
+5.) A table is what holds everything together, the table displays the information under rows and columns. Columns define what the data represents and rows make up a complete conceptual unit. While values are the pieces of information that the column name describes.
 
-6.)
+6.) Three data types that can be used in a table are: string, integer, and objects.
 
-7.)
+7.) query #1: Would output the data for the rows of date and amount.
+        --    5/1/2016, 5/10/2016, 5/15/2016, 5/23/2016, 1500.00, 37.00, 124.93, 54.7
+    query #2: Would output the data from the amount column that is over 500.
+        --    1500.00
+    query #3: Would output all of the data that has the value of "Mega Foods" inside the column payee.
+        --    5/15/2016, Mega Foods, 124.93, Groceries
 
-8.)
+8.) #1
+
+    SELECT email, signup
+
+    FROM users
+
+    WHERE name = "DeAndre Data";
+
+    #2
+
+    SELECT userid
+
+    FROM users
+
+    WHERE email = "aleesia.algorithm@uw.edu";
+
+    #3
+
+    SELECT *
+
+    FROM users
+
+    WHERE userid = '4';
+    
