@@ -1,0 +1,117 @@
+
+
+1.) INSERT, UPDATE, DELETE
+
+
+2.) For adding multiple:
+        INSERT INTO table_name (col1, col2, col3) VALUES (val1, val2, val3), (val4, val5, val6);
+
+    For adding single:
+        INSERT INTO table_name (VALUES (val1, val2, val3);
+
+    For updating:
+        UPDATE table_name SET col1=val2 WHERE col3=val9;
+
+    For deleting:
+        DELETE FROM table_name WHERE column_name=value;
+
+3.) Some data types that can be used in tables are:
+        money -> prices in a store
+        date -> date for publish date of books
+        text -> title of movie
+        time -> movie playing time
+
+
+4.)
+    First and last name -> text
+    Whether they sent RSVP -> boolean
+    Number of Guests -> integer
+    Number of Meals -> decimal
+
+    Command to track the wedding:
+        CREATE TABLE wedding (name text, rsvp boolean, guests integer, meals numeric(5,1));
+
+    Command to track thank you card:
+        ALTER TABLE wedding ADD COLUMN thankyou boolean;
+
+    Command to remove meals from table:
+        ALTER TABLE wedding DROP COLUMN meals;
+
+    Command to add table number for guests:
+        ALTER TABLE wedding ADD COLUMN tablenumber integer;
+
+    Command to delete wedding table from database:
+        DROP TABLE wedding;
+
+
+5.)
+    Command to hold books in the library with the columns ISBN, title, author, genre, publishing date, number of copies, and available copies:
+        CREATE TABLE library (
+          ISBN bigserial,
+          title text,
+          author text,
+          genre text,
+          publishing_date date,
+          number_of_copies numeric,
+          available_copies numeric
+        );
+
+    Add three books to the table:
+
+    title                           |       author        |   genre    | publishing_date | number_of_copies | available_copies |     isbn
+-----------------------------------------------------------+---------------------+------------+-----------------+------------------+------------------+---------------
+Waking Up: A Guide to Spirituality Without Religion       | Sam Harris          | Nonfiction | 2009-09-09      |             1000 |               21 | 9781784161415
+Astrophysics for People in a Hurry                        | Neil deGrasse Tyson | NonFiction | 2017-05-02      |              900 |                6 | 9781538408018
+You Are Here: Discovering the Magic of the Present Moment | Thich Nhat Hanh     | Nonfiction | 2009-02-20      |               60 |                3 | 9780834821118
+
+    Change the available copies column to 1 less:
+
+    title                           |       author        |   genre    | publishing_date | number_of_copies | available_copies |     isbn
+-----------------------------------------------------------+---------------------+------------+-----------------+------------------+------------------+---------------
+Astrophysics for People in a Hurry                        | Neil deGrasse Tyson | NonFiction | 2017-05-02      |              900 |                6 | 9781538408018
+You Are Here: Discovering the Magic of the Present Moment | Thich Nhat Hanh     | Nonfiction | 2009-02-20      |               60 |                3 | 9780834821118
+Waking Up: A Guide to Spirituality Without Religion       | Sam Harris          | Nonfiction | 2009-09-09      |             1000 |               20 | 9781784161415
+
+
+    Remove one of the books from the table:
+
+    title                        |       author        |   genre    | publishing_date | number_of_copies | available_copies |     isbn
+-----------------------------------------------------+---------------------+------------+-----------------+------------------+------------------+---------------
+Astrophysics for People in a Hurry                  | Neil deGrasse Tyson | NonFiction | 2017-05-02      |              900 |                6 | 9781538408018
+Waking Up: A Guide to Spirituality Without Religion | Sam Harris          | Nonfiction | 2009-09-09      |             1000 |               20 | 9781784161415
+
+
+6.)
+    Command for spacecrafts:
+        CREATE TABLE spacecrafts (id integer, name text, year_launched integer, country text, description text, orbiting text, operating boolean, mi_from_earth integer);
+
+    Add 3 non-Earth orbiting satellites to the table:
+        INSERT INTO spacecrafts VALUES (001, 'BlueMountain', 2013, 'USA', 'Bright baby Blue', 'Mun', true, 238900);
+        INSERT INTO spacecrafts VALUES (053, 'Big Juicer', 2052, 'Canada', 'Collecting Mars Juice', 'Mars', true, 33926867.096);
+        INSERT INTO spacecrafts VALUES (009, 'Soaked', 2020, 'China', 'Soaking up the Sun', 'Sun', true, 92960000);
+
+    Remove one of the satellites from the table since it has just been crashed into the planet:
+        DELETE FROM spacecrafts WHERE orbiting='Sun';
+
+
+    Edit another satellite because it is no longer operating and change the value to reflect that:
+        UPDATE spacecrafts SET operating=false WHERE name='BlueMountain';
+
+
+7.)
+    Write a command to make a new table to hold the emails in your inbox. This table should include an id, the subject line, the sender,
+    any additional recipients, the body of the email, the timestamp, whether or not it’s been read, and the id of the email chain it’s in:
+        CREATE TABLE emails (id integer, subject text, sender text, recipients text, body text, time timestamp, read boolean, id_chain integer);
+
+    Add 3 new emails to the inbox:
+        INSERT INTO emails (id, subject, sender, recipients, body, time, read, id_chain)
+        VALUES
+        (1, 'HI', 'Matt', 'You', 'Just saying hi.', '5:16pm', true, 10),
+        (2, 'Suh', 'You', 'Me', 'Sup mayn', '5:18pm', true, 11),
+        (3, 'chillin', 'Me', 'You', 'squat, just chillin', '5:25pm' ,false, 12);
+
+    You’ve just deleted one of the emails, so write a command to remove the row from the inbox table:
+        DELETE FROM emails WHERE id=2;
+
+    You started reading an email but just heard a crash in another room. Mark the email as unread before investigating, so you can come back to it later:
+        UPDATE emails SET read=false WHERE id=1;
