@@ -1,0 +1,110 @@
+1.)
+    How do you find data that is held in two separate data tables?
+          Using the JOIN clause you can combine two or more tables into one.
+
+2.)
+    CROSS JOIN = produces every possible combination of each column from each table being queried.
+
+    INNER JOIN = produces one row in the results table for each common row amongst the tables being queried.
+
+    LEFT OUTER JOIN = results table contains each row from the from the first table and each matching row from the second table.
+
+    RIGHT OUTER JOIN = results table contains each matching row between the queried tables as well as each row from the second table.
+
+    FULL OUTER JOIN = combination of both RIGHT OUTER JOIN and LEFT OUTER JOIN.
+
+3.)
+    Primary key = A Unique identifier for each row in the database table.
+
+    Foreign key = The primary key of one table that is included as a non-unique attribute in another table.
+
+4.)
+    aliasing = A technique of creating short variable names, usually a single letter, to replace the table name in a query.
+
+5.)
+    SELECT p.name, c.salary, c.vacation_days
+    FROM professor AS p
+    JOIN compensation AS c
+    ON p.id = compensation.professor_id;
+
+6.)
+    I would use a NATURAL JOIN if I needed to join multiple tables that had relevant data.
+
+7.)
+    SELECT * FROM employees NATURAL JOIN shifts;
+
+8.)
+    (a) Create a list of all volunteers. If the volunteer is fostering a dog, include each dog as well:
+
+            SELECT volunteers.name, adoptions.dog
+            FROM adoptions
+            FULL OUTER JOIN volunteers
+            ON adoptions.id = volunteers.foster_id;
+
+    (b) List the adopter’s name and the pet’s name for each animal adopted within the past month to be displayed as a ‘Happy Tail’ on social media:
+
+            SELECT adoptions.adopter, adoptions.dog, adoptions.date, volunteers.foster_id
+            FROM adoptions
+            LEFT OUTER JOIN volunteers
+            ON adoptions.id = foster_id;
+
+    (c) Create a list of adopters who have not yet chosen a dog to adopt and generate all possible combinations of adopters and available dogs:
+
+            SELECT volunteers.name, dogs.name
+            FROM volunteers
+            JOIN dogs
+            ON dogs.in_foster = available_to_foster;
+
+
+    (d) Display a list of all cats and all dogs who have not been adopted:
+
+            SELECT dogs.name, cats.cat_name
+            FROM dogs, cats
+            WHERE cats.in_foster = false
+            AND dogs.in_foster = false;
+
+
+    (e) Create a list of volunteers who are available to foster. If they currently are fostering a dog, include the dog. Also include all dogs who are not currently in foster homes:
+
+            SELECT volunteers.name, volunteers.available_to_foster, dogs.name
+            FROM volunteers
+            LEFT JOIN dogs
+            ON dogs.id = volunteers.foster_id
+            WHERE volunteers.available_to_foster = true;
+
+9.)
+    SELECT adopter FROM adoptions WHERE cat='Seashell' OR dog='Seashell';
+
+
+10.)
+    (a) Provide the names and position, in order, of all of the patrons waiting in line for Harry Potter and the Sorcerer’s Stone:
+    
+            There seems to be no way for me to tell what book the patrons are waiting for.
+
+    (b) Make a list of all book titles and denote whether or not a copy of that book is checked out:
+            SELECT books.title, transactions.checked_out_date
+            FROM books
+            LEFT JOIN transactions
+            ON transactions.isbn = books.isbn;
+
+    (c) In an effort to learn which books take longer to read, the librarians would like you to create a list of total checked out time by book name in the past month:
+
+            SELECT books.title, transactions.checked_out_date, transactions.checked_in_date
+            FROM books
+            RIGHT JOIN transactions
+            ON books.isbn = transactions.isbn;
+
+    (d) In order to learn which items should be retired, make a list of all books that have not been checked out in the past 5 years:
+
+            SELECT books.title, transactions.checked_out_date
+            FROM books
+            LEFT JOIN transactions
+            ON books.isbn = transactions.isbn
+            WHERE transactions.checked_out_date < '2012-01-01';
+
+    (e) List all of the library patrons. If they have one or more books checked out, correspond the books to the patrons:
+
+            SELECT patrons.name, transactions.checked_out_date, books.title
+            FROM patrons
+            LEFT JOIN transactions ON transactions.user_id = patrons.id
+            LEFT JOIN books ON transactions.isbn = books.isbn;
