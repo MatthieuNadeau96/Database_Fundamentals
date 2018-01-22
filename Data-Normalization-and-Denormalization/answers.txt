@@ -1,0 +1,31 @@
+1.) In your own words, explain the benefits of normalization.
+
+  - Data normalization is beneficial to improving organization and integrity to databases. It also helps with having faster update performance, index creation, and sorting.
+
+
+2.)  List and explain the different normal forms and how they relate to one another.
+
+  - The normal forms are a set of rules to aid the normalization process.
+    Rule 1: All occurrences of an entity must contain the same number of attributes, no lists, no repeated attributes.
+    Rule 2: All non-key fields must be a function of the key.
+    Rule 3: All non-key fields must not be a function of other non-key fields.
+    Rule 4: A row must not contain two or more independent multi-valued facts about an entity.
+    Rule 5: A record cannot be reconstructed from several smaller record types.
+
+3.) The student_records table below shows the students and their grades in different subjects. The table is already in first normal form (1NF). Convert this table to the third normal form (3NF) using the techniques you learned in this checkpoint.
+
+  - I would split up the professors and the students into two separate tables connecting them with their subjects.
+
+  professor_id |   subject   | professor_name
+  --------------+-------------+----------------
+             2 | Philosophy  | William C
+             1 | Economics   | Natalie M
+             3 | Mathematics | Mark W
+
+  student_id | student_name |   subject   | grade |     student_email
+  ------------+--------------+-------------+-------+-----------------------
+           1 | John         | Philosophy  | A     | john.b20@hogwarts.edu
+           2 | Sarah        | Philosophy  | C     | sarah@hogwarts.edu
+           3 | Martha       | Economics   | A     | martha@hogwarts.edu
+           4 | James        | Mathematics | B     | james@hogwarts.edu
+           5 | Stanley      | Economics   | B     | stanley@hogwarts.edu
